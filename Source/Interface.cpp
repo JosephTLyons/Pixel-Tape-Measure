@@ -30,13 +30,35 @@
 Interface::Interface ()
 {
     //[Constructor_pre] You can add your own custom stuff here..
+
+    // Always display this window on top of other windows in this app
+    setAlwaysOnTop(true);
+
+    setMouseCursor(MouseCursor::CrosshairCursor);
+
+    addMouseListener(this, true);
+
+    // Set up starting value and label
+    pixelDistance = 0;
+    //pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
+
+
     //[/Constructor_pre]
+
+    addAndMakeVisible (pixelDistanceLabel = new Label ("pixelDistanceLabel",
+                                                       TRANS("label text")));
+    pixelDistanceLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    pixelDistanceLabel->setJustificationType (Justification::centredRight);
+    pixelDistanceLabel->setEditable (false, false, false);
+    pixelDistanceLabel->setColour (Label::backgroundColourId, Colour (0x00000000));
+    pixelDistanceLabel->setColour (TextEditor::textColourId, Colour (0x00000000));
+    pixelDistanceLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (600, 400);
+    setSize (150, 150);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -48,6 +70,7 @@ Interface::~Interface()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
+    pixelDistanceLabel = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -60,8 +83,6 @@ void Interface::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colour (0xff323e44));
-
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
@@ -71,6 +92,7 @@ void Interface::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
+    pixelDistanceLabel->setBounds (0, 0, 150, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -78,6 +100,15 @@ void Interface::resized()
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
+
+void Interface::mouseDown(const MouseEvent &event)
+{
+    pixelDistance = event.getDistanceFromDragStart();
+    pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
+}
+
+
 //[/MiscUserCode]
 
 
@@ -93,8 +124,13 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="Interface" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
-  <BACKGROUND backgroundColour="ff323e44"/>
+                 fixedSize="1" initialWidth="150" initialHeight="150">
+  <BACKGROUND backgroundColour="323e44"/>
+  <LABEL name="pixelDistanceLabel" id="c34f3ff65f74d049" memberName="pixelDistanceLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 0 150 24" bkgCol="0"
+         edTextCol="0" edBkgCol="0" labelText="label text" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15" kerning="0" bold="0" italic="0" justification="34"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
