@@ -40,17 +40,18 @@ Interface::Interface ()
 
     // Set up starting value and label
     pixelDistance = 0;
-    //pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
+   // pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
 
 
     //[/Constructor_pre]
 
     addAndMakeVisible (pixelDistanceLabel = new Label ("pixelDistanceLabel",
                                                        TRANS("label text")));
-    pixelDistanceLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    pixelDistanceLabel->setFont (Font (32.10f, Font::plain).withTypefaceStyle ("Regular"));
     pixelDistanceLabel->setJustificationType (Justification::centredRight);
     pixelDistanceLabel->setEditable (false, false, false);
     pixelDistanceLabel->setColour (Label::backgroundColourId, Colour (0x00000000));
+    pixelDistanceLabel->setColour (Label::textColourId, Colours::white);
     pixelDistanceLabel->setColour (TextEditor::textColourId, Colour (0x00000000));
     pixelDistanceLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -58,7 +59,7 @@ Interface::Interface ()
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (150, 150);
+    setSize (500, 500);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -92,23 +93,27 @@ void Interface::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    pixelDistanceLabel->setBounds (0, 0, 150, 24);
+    pixelDistanceLabel->setBounds (0, 0, proportionOfWidth (1.0000f), 40);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
+}
+
+void Interface::mouseDrag (const MouseEvent& e)
+{
+    //[UserCode_mouseDrag] -- Add your code here...
+    
+    pixelDistance = e.getDistanceFromDragStart();
+    pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
+    
+//    Graphics tapeMeasureLine(this);
+//    tapeMeasureLine.drawLine(event.getMouseDownX(), event.getMouseDownY(), event.x, event.y);
+    
+    //[/UserCode_mouseDrag]
 }
 
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
-
-
-void Interface::mouseDown(const MouseEvent &event)
-{
-    pixelDistance = event.getDistanceFromDragStart();
-    pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
-}
-
-
 //[/MiscUserCode]
 
 
@@ -124,13 +129,17 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="Interface" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="150" initialHeight="150">
-  <BACKGROUND backgroundColour="323e44"/>
+                 fixedSize="1" initialWidth="500" initialHeight="500">
+  <METHODS>
+    <METHOD name="mouseDrag (const MouseEvent&amp; e)"/>
+  </METHODS>
+  <BACKGROUND backgroundColour="0"/>
   <LABEL name="pixelDistanceLabel" id="c34f3ff65f74d049" memberName="pixelDistanceLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 0 150 24" bkgCol="0"
-         edTextCol="0" edBkgCol="0" labelText="label text" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" kerning="0" bold="0" italic="0" justification="34"/>
+         virtualName="" explicitFocusOrder="0" pos="0 0 100% 40" bkgCol="0"
+         textCol="ffffffff" edTextCol="0" edBkgCol="0" labelText="label text"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="32.100000000000001421" kerning="0"
+         bold="0" italic="0" justification="34"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
