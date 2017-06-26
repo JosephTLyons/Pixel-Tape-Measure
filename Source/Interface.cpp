@@ -97,7 +97,18 @@ void Interface::mouseDrag (const MouseEvent& e)
 {
     //[UserCode_mouseDrag] -- Add your code here...
 
+    TooltipWindow tooltip(this, 600);
+    
+    Point<int> point(e.x, e.y);
+    
+    tooltip.displayTip(point, "Hi");
+    
     passPixelDistanceToLabel(e.getDistanceFromDragStart());
+    
+    //Image graphicsImage(JPEGImageFormat, getWidth(), getHeight(), true);
+    
+    
+    
 
 //    Line<int> line;
 //    tapeMeasureLine.drawLine(e.getMouseDownX(), e.getMouseDownY(), e.x, e.y);
