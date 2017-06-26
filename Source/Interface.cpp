@@ -97,20 +97,15 @@ void Interface::mouseDrag (const MouseEvent& e)
 {
     //[UserCode_mouseDrag] -- Add your code here...
 
-    TooltipWindow tooltip(this, 600);
-    
-    Point<int> point(e.x, e.y);
-    
-    tooltip.displayTip(point, "Hi");
-    
     passPixelDistanceToLabel(e.getDistanceFromDragStart());
     
-    //Image graphicsImage(JPEGImageFormat, getWidth(), getHeight(), true);
+    //ImageType type;
     
-    
+    // Need to create a new clear image the same size as the current window size
+    //Image graphicsImage(Image::ARGB, getWidth(), getHeight(), true, type);
     
 
-//    Line<int> line;
+//    Graphics tapeMeasureLine();
 //    tapeMeasureLine.drawLine(e.getMouseDownX(), e.getMouseDownY(), e.x, e.y);
 
     //[/UserCode_mouseDrag]
@@ -132,15 +127,14 @@ void Interface::mouseUp (const MouseEvent& e)
 void Interface::setUpCursor()
 {
     // Load image from binary
-    cursorImage = ImageFileFormat::loadFrom(BinaryData::Crosshair_Cursor_jpg,
-                                            BinaryData::Crosshair_Cursor_jpgSize);
-//
-//    // Make a cursor with this image
-//    MouseCursor cursorTemp(cursorImage, cursorImage.getWidth() / 2, cursorImage.getHeight() / 2);
-//
-//    setMouseCursor(cursorTemp);
+    cursorImage = ImageFileFormat::loadFrom(BinaryData::Crosshair_Cursor_jpg, BinaryData::Crosshair_Cursor_jpgSize);
 
-    setMouseCursor(MouseCursor::CrosshairCursor);
+    // Make a cursor with this image
+    MouseCursor cursorTemp(cursorImage, cursorImage.getWidth() / 2, cursorImage.getHeight() / 2);
+
+    setMouseCursor(cursorTemp);
+
+    //setMouseCursor(MouseCursor::CrosshairCursor);
 }
 
 void Interface::passPixelDistanceToLabel(const int &input)
