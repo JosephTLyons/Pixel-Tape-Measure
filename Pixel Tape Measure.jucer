@@ -9,8 +9,6 @@
       <GROUP id="{B147DFAB-E5EA-BCE6-761C-89D244908D58}" name="Cursor Images">
         <FILE id="ck4eXp" name="Crosshair Cursor.jpg" compile="0" resource="1"
               file="Cursor Images/Crosshair Cursor.jpg"/>
-        <FILE id="Wmpi3Z" name="Crosshair Cursor.png" compile="0" resource="1"
-              file="Cursor Images/Crosshair Cursor.png"/>
       </GROUP>
       <FILE id="e3YyUU" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="bzxPqe" name="Interface.h" compile="0" resource="0" file="Source/Interface.h"/>
