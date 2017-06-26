@@ -40,7 +40,7 @@ Interface::Interface ()
 
     // Set up starting value and label
     pixelDistance = 0;
-   // pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
+    pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
 
 
     //[/Constructor_pre]
@@ -101,14 +101,24 @@ void Interface::resized()
 void Interface::mouseDrag (const MouseEvent& e)
 {
     //[UserCode_mouseDrag] -- Add your code here...
-    
+
     pixelDistance = e.getDistanceFromDragStart();
     pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
-    
+
 //    Graphics tapeMeasureLine(this);
 //    tapeMeasureLine.drawLine(event.getMouseDownX(), event.getMouseDownY(), event.x, event.y);
-    
+
     //[/UserCode_mouseDrag]
+}
+
+void Interface::mouseUp (const MouseEvent& e)
+{
+    //[UserCode_mouseUp] -- Add your code here...
+    
+    pixelDistanceLabel = 0;
+    pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
+    
+    //[/UserCode_mouseUp]
 }
 
 
@@ -132,6 +142,7 @@ BEGIN_JUCER_METADATA
                  fixedSize="1" initialWidth="500" initialHeight="500">
   <METHODS>
     <METHOD name="mouseDrag (const MouseEvent&amp; e)"/>
+    <METHOD name="mouseUp (const MouseEvent&amp; e)"/>
   </METHODS>
   <BACKGROUND backgroundColour="0"/>
   <LABEL name="pixelDistanceLabel" id="c34f3ff65f74d049" memberName="pixelDistanceLabel"

@@ -41,11 +41,13 @@ public:
     ~Interface();
 
     //==============================================================================
-    //[UserMethods]     -- You can add your own custom methods in this section.//[/UserMethods]
+    //[UserMethods]     -- You can add your own custom methods in this section.
+    //[/UserMethods]
 
     void paint (Graphics& g) override;
     void resized() override;
     void mouseDrag (const MouseEvent& e) override;
+    void mouseUp (const MouseEvent& e) override;
 
 
 
