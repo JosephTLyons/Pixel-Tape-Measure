@@ -42,6 +42,10 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+
+    void setUpCursor();
+    void passPixelDistanceToLabel(const int &input);
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -54,7 +58,9 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 
-    int pixelDistance;
+    int pixelDistanceInt;
+    String pixelDistanceText;
+    Image cursorImage;
 
     //[/UserVariables]
 

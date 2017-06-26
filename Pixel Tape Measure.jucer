@@ -6,6 +6,10 @@
               includeBinaryInAppConfig="1" jucerVersion="5.0.2">
   <MAINGROUP id="HFokx2" name="Pixel Tape Measure">
     <GROUP id="{4A6C1738-A719-4C7C-B8AC-6E41D795112A}" name="Source">
+      <GROUP id="{B147DFAB-E5EA-BCE6-761C-89D244908D58}" name="Cursor Images">
+        <FILE id="ck4eXp" name="Crosshair Cursor.jpg" compile="0" resource="1"
+              file="Cursor Images/Crosshair Cursor.jpg"/>
+      </GROUP>
       <FILE id="e3YyUU" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="bzxPqe" name="Interface.h" compile="0" resource="0" file="Source/Interface.h"/>
       <FILE id="nalZ2J" name="Interface.cpp" compile="1" resource="0" file="Source/Interface.cpp"/>

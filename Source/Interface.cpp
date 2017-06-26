@@ -31,24 +31,15 @@ Interface::Interface ()
 {
     //[Constructor_pre] You can add your own custom stuff here..
 
-    // Always display this window on top of other windows in this app
-    setAlwaysOnTop(true);
-
-    setMouseCursor(MouseCursor::CrosshairCursor);
-
     addMouseListener(this, true);
-
-    // Set up starting value and label
-    pixelDistance = 0;
-    pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
-
+    setUpCursor();
 
     //[/Constructor_pre]
 
     addAndMakeVisible (pixelDistanceLabel = new Label ("pixelDistanceLabel",
-                                                       TRANS("label text")));
+                                                       TRANS("Pixel Distance:\n")));
     pixelDistanceLabel->setFont (Font (32.10f, Font::plain).withTypefaceStyle ("Regular"));
-    pixelDistanceLabel->setJustificationType (Justification::centredRight);
+    pixelDistanceLabel->setJustificationType (Justification::centredLeft);
     pixelDistanceLabel->setEditable (false, false, false);
     pixelDistanceLabel->setColour (Label::backgroundColourId, Colour (0x00000000));
     pixelDistanceLabel->setColour (Label::textColourId, Colours::white);
@@ -63,6 +54,10 @@ Interface::Interface ()
 
 
     //[Constructor] You can add your own custom stuff here..
+
+    // Set up starting value and label
+    passPixelDistanceToLabel(0);
+
     //[/Constructor]
 }
 
@@ -102,11 +97,10 @@ void Interface::mouseDrag (const MouseEvent& e)
 {
     //[UserCode_mouseDrag] -- Add your code here...
 
-    pixelDistance = e.getDistanceFromDragStart();
-    pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
+    passPixelDistanceToLabel(e.getDistanceFromDragStart());
 
-//    Graphics tapeMeasureLine(this);
-//    tapeMeasureLine.drawLine(event.getMouseDownX(), event.getMouseDownY(), event.x, event.y);
+//    Line<int> line;
+//    tapeMeasureLine.drawLine(e.getMouseDownX(), e.getMouseDownY(), e.x, e.y);
 
     //[/UserCode_mouseDrag]
 }
@@ -114,16 +108,37 @@ void Interface::mouseDrag (const MouseEvent& e)
 void Interface::mouseUp (const MouseEvent& e)
 {
     //[UserCode_mouseUp] -- Add your code here...
-    
-    pixelDistanceLabel = 0;
-    pixelDistanceLabel->setText((String) pixelDistance, dontSendNotification);
-    
+
+    passPixelDistanceToLabel(0);
+
     //[/UserCode_mouseUp]
 }
 
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
+void Interface::setUpCursor()
+{
+    // Load image from binary
+    cursorImage = ImageFileFormat::loadFrom(BinaryData::Crosshair_Cursor_jpg,
+                                            BinaryData::Crosshair_Cursor_jpgSize);
+//
+//    // Make a cursor with this image
+//    MouseCursor cursorTemp(cursorImage, cursorImage.getWidth() / 2, cursorImage.getHeight() / 2);
+//
+//    setMouseCursor(cursorTemp);
+
+    setMouseCursor(MouseCursor::CrosshairCursor);
+}
+
+void Interface::passPixelDistanceToLabel(const int &input)
+{
+    pixelDistanceInt = input;
+    String tempString = "Pixel Distance: " + (String) pixelDistanceInt;
+    pixelDistanceLabel->setText(tempString, dontSendNotification);
+}
+
 //[/MiscUserCode]
 
 
@@ -147,10 +162,10 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="0"/>
   <LABEL name="pixelDistanceLabel" id="c34f3ff65f74d049" memberName="pixelDistanceLabel"
          virtualName="" explicitFocusOrder="0" pos="0 0 100% 40" bkgCol="0"
-         textCol="ffffffff" edTextCol="0" edBkgCol="0" labelText="label text"
+         textCol="ffffffff" edTextCol="0" edBkgCol="0" labelText="Pixel Distance:&#10;"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="32.100000000000001421" kerning="0"
-         bold="0" italic="0" justification="34"/>
+         bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
