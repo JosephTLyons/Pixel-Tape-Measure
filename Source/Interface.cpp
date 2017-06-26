@@ -37,8 +37,8 @@ Interface::Interface ()
     //[/Constructor_pre]
 
     addAndMakeVisible (pixelDistanceLabel = new Label ("pixelDistanceLabel",
-                                                       TRANS("Pixel Distance:\n")));
-    pixelDistanceLabel->setFont (Font (32.10f, Font::plain).withTypefaceStyle ("Regular"));
+                                                       String()));
+    pixelDistanceLabel->setFont (Font (36.60f, Font::plain).withTypefaceStyle ("Regular"));
     pixelDistanceLabel->setJustificationType (Justification::centredLeft);
     pixelDistanceLabel->setEditable (false, false, false);
     pixelDistanceLabel->setColour (Label::backgroundColourId, Colour (0x00000000));
@@ -162,10 +162,10 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="0"/>
   <LABEL name="pixelDistanceLabel" id="c34f3ff65f74d049" memberName="pixelDistanceLabel"
          virtualName="" explicitFocusOrder="0" pos="0 0 100% 40" bkgCol="0"
-         textCol="ffffffff" edTextCol="0" edBkgCol="0" labelText="Pixel Distance:&#10;"
-         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="32.100000000000001421" kerning="0"
-         bold="0" italic="0" justification="33"/>
+         textCol="ffffffff" edTextCol="0" edBkgCol="0" labelText="" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="36.600000000000001421" kerning="0" bold="0" italic="0"
+         justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
