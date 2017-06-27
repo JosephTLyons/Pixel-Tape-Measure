@@ -61,6 +61,7 @@ private:
     int pixelDistanceInt;
     String pixelDistanceText;
     Image cursorImage;
+    ImageComponent imageComponentforClearImage;
 
     //[/UserVariables]
 
