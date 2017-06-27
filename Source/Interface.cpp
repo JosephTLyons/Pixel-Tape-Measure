@@ -109,11 +109,14 @@ void Interface::mouseDrag (const MouseEvent& e)
     imageComponentforClearImage.setBounds(0, 0, getWidth(), getHeight());
     addAndMakeVisible(imageComponentforClearImage);
 
-    // Set up line drawing code
+    // Code to draw line that has circle at start point
     Graphics tapeMeasureLine(imageComponentforClearImage.getImage());
     tapeMeasureLine.setColour(Colours::green);
     tapeMeasureLine.drawLine(e.getMouseDownX(), e.getMouseDownY(), e.x, e.y);
-
+    
+    Rectangle<float> boundaryForStartingCircle(e.getMouseDownX() - 4, e.getMouseDownY() - 4, 8, 8);
+    tapeMeasureLine.fillEllipse(boundaryForStartingCircle);
+    
     //[/UserCode_mouseDrag]
 }
 
