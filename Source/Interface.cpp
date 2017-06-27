@@ -79,8 +79,6 @@ void Interface::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colours::white);
-
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
@@ -103,7 +101,7 @@ void Interface::mouseDrag (const MouseEvent& e)
 
     // Create a new clear image
     Image graphicToDrawLineOn(Image::ARGB, getWidth(), getHeight(), true);
-    
+
     // Load into an ImageComponent
     imageComponentforClearImage.setImage(graphicToDrawLineOn);
     imageComponentforClearImage.setBounds(0, 0, getWidth(), getHeight());
@@ -113,10 +111,10 @@ void Interface::mouseDrag (const MouseEvent& e)
     Graphics tapeMeasureLine(imageComponentforClearImage.getImage());
     tapeMeasureLine.setColour(Colours::green);
     tapeMeasureLine.drawLine(e.getMouseDownX(), e.getMouseDownY(), e.x, e.y);
-    
+
     Rectangle<float> boundaryForStartingCircle(e.getMouseDownX() - 4, e.getMouseDownY() - 4, 8, 8);
     tapeMeasureLine.fillEllipse(boundaryForStartingCircle);
-    
+
     //[/UserCode_mouseDrag]
 }
 
@@ -126,7 +124,7 @@ void Interface::mouseUp (const MouseEvent& e)
 
     passPixelDistanceToLabel(0);
     imageComponentforClearImage.setVisible(false);
-    
+
 
     //[/UserCode_mouseUp]
 }
@@ -175,7 +173,7 @@ BEGIN_JUCER_METADATA
     <METHOD name="mouseDrag (const MouseEvent&amp; e)"/>
     <METHOD name="mouseUp (const MouseEvent&amp; e)"/>
   </METHODS>
-  <BACKGROUND backgroundColour="ffffffff"/>
+  <BACKGROUND backgroundColour="ffffff"/>
   <LABEL name="pixelDistanceLabel" id="c34f3ff65f74d049" memberName="pixelDistanceLabel"
          virtualName="" explicitFocusOrder="0" pos="0 0 60% 40" bkgCol="0"
          textCol="ff000000" edTextCol="0" edBkgCol="0" labelText="" editableSingleClick="0"
