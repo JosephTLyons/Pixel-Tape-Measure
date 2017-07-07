@@ -80,15 +80,18 @@ void Interface::paint (Graphics& g)
     
     g.setColour(Colours::green);
     
-    // Create dot to indicate beginning of the line
-    Rectangle<float> boundaryForStartingCircle(startingCoordinate.getX() - 4,
-                                               startingCoordinate.getY() - 4, 8, 8);
-    g.fillEllipse(boundaryForStartingCircle);
-    
-    // Draw line
-    const int lineThickness = 3;
-    g.drawLine(startingCoordinate.getX(), startingCoordinate.getY(),
-               currentCoordinate.getX(), currentCoordinate.getY(), lineThickness);
+    // Only draw dot and line if line exists (has some sort of length)
+    if(startingCoordinate.getDistanceFrom(currentCoordinate) > 0)
+    {
+        // Create dot to indicate beginning of the line
+        Rectangle<float> boundaryForStartingCircle(startingCoordinate.getX() - 4,
+                                                   startingCoordinate.getY() - 4, 8, 8);
+        g.fillEllipse(boundaryForStartingCircle);
+        
+        const int lineThickness = 3;
+        g.drawLine(startingCoordinate.getX(), startingCoordinate.getY(),
+                   currentCoordinate.getX(), currentCoordinate.getY(), lineThickness);
+    }
 
     //[/UserPrePaint]
 
