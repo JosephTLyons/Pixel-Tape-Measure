@@ -41,8 +41,8 @@ Interface::Interface ()
     pixelDistanceLabel->setFont (Font (36.60f, Font::plain).withTypefaceStyle ("Regular"));
     pixelDistanceLabel->setJustificationType (Justification::centredLeft);
     pixelDistanceLabel->setEditable (false, false, false);
-    pixelDistanceLabel->setColour (Label::backgroundColourId, Colour (0x00000000));
-    pixelDistanceLabel->setColour (Label::textColourId, Colours::black);
+    pixelDistanceLabel->setColour (Label::backgroundColourId, Colours::black);
+    pixelDistanceLabel->setColour (Label::textColourId, Colours::white);
     pixelDistanceLabel->setColour (TextEditor::textColourId, Colour (0x00000000));
     pixelDistanceLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -88,7 +88,7 @@ void Interface::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    pixelDistanceLabel->setBounds (0, 0, proportionOfWidth (0.6000f), 40);
+    pixelDistanceLabel->setBounds (0, 0, 320, 40);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -175,8 +175,8 @@ BEGIN_JUCER_METADATA
   </METHODS>
   <BACKGROUND backgroundColour="ffffff"/>
   <LABEL name="pixelDistanceLabel" id="c34f3ff65f74d049" memberName="pixelDistanceLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 0 60% 40" bkgCol="0"
-         textCol="ff000000" edTextCol="0" edBkgCol="0" labelText="" editableSingleClick="0"
+         virtualName="" explicitFocusOrder="0" pos="0 0 320 40" bkgCol="ff000000"
+         textCol="ffffffff" edTextCol="0" edBkgCol="0" labelText="" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="36.600000000000001421" kerning="0" bold="0" italic="0"
          justification="33"/>
