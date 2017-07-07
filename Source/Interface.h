@@ -50,6 +50,7 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void mouseDown (const MouseEvent& e) override;
     void mouseDrag (const MouseEvent& e) override;
     void mouseUp (const MouseEvent& e) override;
 
@@ -61,7 +62,9 @@ private:
     int pixelDistanceInt;
     String pixelDistanceText;
     Image cursorImage;
-    ImageComponent imageComponentforClearImage;
+    Point<int> startingCoordinate;
+    Point<int> currentCoordinate;
+
 
     //[/UserVariables]
 

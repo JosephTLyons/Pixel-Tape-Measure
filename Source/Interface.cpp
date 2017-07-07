@@ -77,6 +77,19 @@ Interface::~Interface()
 void Interface::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
+    
+    g.setColour(Colours::green);
+    
+    // Create dot to indicate beginning of the line
+    Rectangle<float> boundaryForStartingCircle(startingCoordinate.getX() - 4,
+                                               startingCoordinate.getY() - 4, 8, 8);
+    g.fillEllipse(boundaryForStartingCircle);
+    
+    // Draw line
+    const int lineThickness = 3;
+    g.drawLine(startingCoordinate.getX(), startingCoordinate.getY(),
+               currentCoordinate.getX(), currentCoordinate.getY(), lineThickness);
+
     //[/UserPrePaint]
 
     //[UserPaint] Add your own custom painting code here..
@@ -93,27 +106,22 @@ void Interface::resized()
     //[/UserResized]
 }
 
+void Interface::mouseDown (const MouseEvent& e)
+{
+    //[UserCode_mouseDown] -- Add your code here...
+    
+    startingCoordinate.setXY(e.getMouseDownX(), e.getMouseDownY());
+    
+    //[/UserCode_mouseDown]
+}
+
 void Interface::mouseDrag (const MouseEvent& e)
 {
     //[UserCode_mouseDrag] -- Add your code here...
 
     passPixelDistanceToLabel(e.getDistanceFromDragStart());
-
-    // Create a new clear image
-    Image graphicToDrawLineOn(Image::ARGB, getWidth(), getHeight(), true);
-
-    // Load into an ImageComponent
-    imageComponentforClearImage.setImage(graphicToDrawLineOn);
-    imageComponentforClearImage.setBounds(0, 0, getWidth(), getHeight());
-    addAndMakeVisible(imageComponentforClearImage);
-
-    // Code to draw line that has circle at start point
-    Graphics tapeMeasureLine(imageComponentforClearImage.getImage());
-    tapeMeasureLine.setColour(Colours::green);
-    tapeMeasureLine.drawLine(e.getMouseDownX(), e.getMouseDownY(), e.x, e.y);
-
-    Rectangle<float> boundaryForStartingCircle(e.getMouseDownX() - 4, e.getMouseDownY() - 4, 8, 8);
-    tapeMeasureLine.fillEllipse(boundaryForStartingCircle);
+    currentCoordinate.setXY(e.x, e.y);
+    repaint();
 
     //[/UserCode_mouseDrag]
 }
@@ -123,13 +131,14 @@ void Interface::mouseUp (const MouseEvent& e)
     //[UserCode_mouseUp] -- Add your code here...
 
     passPixelDistanceToLabel(0);
-    imageComponentforClearImage.setVisible(false);
-
+    
+    // Remove line by giving it length of zero
+    startingCoordinate.setXY(0, 0);
+    currentCoordinate.setXY(0, 0);
+    repaint();
 
     //[/UserCode_mouseUp]
 }
-
-
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
@@ -142,8 +151,6 @@ void Interface::setUpCursor()
     MouseCursor cursorTemp(cursorImage, (cursorImage.getWidth() / 2) - 4, (cursorImage.getHeight() / 2) - 2);
 
     setMouseCursor(cursorTemp);
-
-    //setMouseCursor(MouseCursor::CrosshairCursor);
 }
 
 void Interface::passPixelDistanceToLabel(const int &input)
@@ -172,6 +179,7 @@ BEGIN_JUCER_METADATA
   <METHODS>
     <METHOD name="mouseDrag (const MouseEvent&amp; e)"/>
     <METHOD name="mouseUp (const MouseEvent&amp; e)"/>
+    <METHOD name="mouseDown (const MouseEvent&amp; e)"/>
   </METHODS>
   <BACKGROUND backgroundColour="ffffff"/>
   <LABEL name="pixelDistanceLabel" id="c34f3ff65f74d049" memberName="pixelDistanceLabel"
