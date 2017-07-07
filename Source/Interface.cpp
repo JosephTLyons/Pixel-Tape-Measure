@@ -32,7 +32,7 @@ Interface::Interface ()
     //[Constructor_pre] You can add your own custom stuff here..
 
     addMouseListener(this, true);
-    setUpCursor();
+    setUpCustomCursor();
 
     //[/Constructor_pre]
 
@@ -145,7 +145,7 @@ void Interface::mouseUp (const MouseEvent& e)
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-void Interface::setUpCursor()
+void Interface::setUpCustomCursor()
 {
     // Load image from binary
     cursorImage = ImageFileFormat::loadFrom(BinaryData::Crosshair_Cursor_jpg, BinaryData::Crosshair_Cursor_jpgSize);

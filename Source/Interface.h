@@ -43,7 +43,7 @@ public:
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
 
-    void setUpCursor();
+    void setUpCustomCursor();
     void passPixelDistanceToLabel(const int &input);
 
     //[/UserMethods]
