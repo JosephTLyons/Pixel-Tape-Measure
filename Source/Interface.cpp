@@ -78,19 +78,17 @@ void Interface::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
     
-    g.setColour(Colours::green);
-    
     // Only draw dot and line if line exists (has some sort of length)
     if(startingCoordinate.getDistanceFrom(currentCoordinate) > 0)
     {
-        // Create dot to indicate beginning of the line
-        Rectangle<float> boundaryForStartingCircle(startingCoordinate.getX() - 4,
-                                                   startingCoordinate.getY() - 4, 8, 8);
-        g.fillEllipse(boundaryForStartingCircle);
+        g.setColour(Colours::red);
+        createEndPointDot(g, startingCoordinate.getX(), startingCoordinate.getY());
         
+        g.setColour(Colours::green);
         const int lineThickness = 3;
         g.drawLine(startingCoordinate.getX(), startingCoordinate.getY(),
                    currentCoordinate.getX(), currentCoordinate.getY(), lineThickness);
+        
     }
 
     //[/UserPrePaint]
@@ -144,6 +142,12 @@ void Interface::mouseUp (const MouseEvent& e)
 }
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
+void Interface::createEndPointDot(Graphics &g, const int &x, const int &y)
+{
+    Rectangle<float> boundaryForStartingCircle(x - 4, y - 4, 8, 8);
+    g.fillEllipse(boundaryForStartingCircle);
+}
 
 void Interface::setUpCustomCursor()
 {

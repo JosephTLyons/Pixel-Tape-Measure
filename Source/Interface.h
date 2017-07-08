@@ -44,6 +44,7 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
 
     void setUpCustomCursor();
+    void createEndPointDot(Graphics &g, const int &x, const int &y);
     void passPixelDistanceToLabel(const int &input);
 
     //[/UserMethods]
