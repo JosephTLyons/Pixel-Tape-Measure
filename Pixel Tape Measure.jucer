@@ -3,7 +3,8 @@
 <JUCERPROJECT id="w9HsZ6" name="Pixel Tape Measure" displaySplashScreen="0"
               reportAppUsage="1" splashScreenColour="Dark" projectType="guiapp"
               version="1.0.0" bundleIdentifier="com.yourcompany.PixelTapeMeasure"
-              includeBinaryInAppConfig="1" jucerVersion="5.0.2">
+              includeBinaryInAppConfig="1" jucerVersion="5.2.0" cppLanguageStandard="11"
+              companyCopyright="">
   <MAINGROUP id="HFokx2" name="Pixel Tape Measure">
     <GROUP id="{4A6C1738-A719-4C7C-B8AC-6E41D795112A}" name="Source">
       <GROUP id="{B147DFAB-E5EA-BCE6-761C-89D244908D58}" name="Cursor Images">
@@ -18,8 +19,10 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Pixel Tape Measure"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Pixel Tape Measure"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Pixel Tape Measure"
+                       enablePluginBinaryCopyStep="1"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Pixel Tape Measure"
+                       enablePluginBinaryCopyStep="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../Libraries/JUCE/modules"/>
