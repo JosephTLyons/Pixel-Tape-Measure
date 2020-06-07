@@ -7,12 +7,12 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.2.0
+  Created with Projucer version: 5.4.7
 
   ------------------------------------------------------------------------------
 
-  The Projucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright (c) 2015 - ROLI Ltd.
+  The Projucer is part of the JUCE library.
+  Copyright (c) 2017 - ROLI Ltd.
 
   ==============================================================================
 */
@@ -36,8 +36,9 @@ Interface::Interface ()
 
     //[/Constructor_pre]
 
-    addAndMakeVisible (pixelDistanceLabel = new Label ("pixelDistanceLabel",
-                                                       String()));
+    pixelDistanceLabel.reset (new Label ("pixelDistanceLabel",
+                                         String()));
+    addAndMakeVisible (pixelDistanceLabel.get());
     pixelDistanceLabel->setFont (Font (36.60f, Font::plain).withTypefaceStyle ("Regular"));
     pixelDistanceLabel->setJustificationType (Justification::centredLeft);
     pixelDistanceLabel->setEditable (false, false, false);
@@ -45,6 +46,8 @@ Interface::Interface ()
     pixelDistanceLabel->setColour (Label::textColourId, Colours::white);
     pixelDistanceLabel->setColour (TextEditor::textColourId, Colour (0x00000000));
     pixelDistanceLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    pixelDistanceLabel->setBounds (0, 0, 320, 40);
 
 
     //[UserPreSize]
@@ -77,18 +80,18 @@ Interface::~Interface()
 void Interface::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
-    
+
     // Only draw dot and line if line exists (has some sort of length)
     if(startingCoordinate.getDistanceFrom(currentCoordinate) > 0)
     {
         g.setColour(Colours::red);
         createEndPointDot(g, startingCoordinate.getX(), startingCoordinate.getY());
-        
+
         g.setColour(Colours::green);
         const int lineThickness = 3;
         g.drawLine(startingCoordinate.getX(), startingCoordinate.getY(),
                    currentCoordinate.getX(), currentCoordinate.getY(), lineThickness);
-        
+
     }
 
     //[/UserPrePaint]
@@ -102,7 +105,6 @@ void Interface::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    pixelDistanceLabel->setBounds (0, 0, 320, 40);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -110,9 +112,9 @@ void Interface::resized()
 void Interface::mouseDown (const MouseEvent& e)
 {
     //[UserCode_mouseDown] -- Add your code here...
-    
+
     startingCoordinate.setXY(e.getMouseDownX(), e.getMouseDownY());
-    
+
     //[/UserCode_mouseDown]
 }
 
@@ -132,7 +134,7 @@ void Interface::mouseUp (const MouseEvent& e)
     //[UserCode_mouseUp] -- Add your code here...
 
     passPixelDistanceToLabel(0);
-    
+
     // Remove line by giving it length of zero
     startingCoordinate.setXY(0, 0);
     currentCoordinate.setXY(0, 0);
@@ -140,6 +142,8 @@ void Interface::mouseUp (const MouseEvent& e)
 
     //[/UserCode_mouseUp]
 }
+
+
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
@@ -193,8 +197,7 @@ BEGIN_JUCER_METADATA
          virtualName="" explicitFocusOrder="0" pos="0 0 320 40" bkgCol="ff000000"
          textCol="ffffffff" edTextCol="0" edBkgCol="0" labelText="" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="36.600000000000001421" kerning="0" bold="0" italic="0"
-         justification="33"/>
+         fontsize="36.6" kerning="0.0" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
@@ -204,3 +207,4 @@ END_JUCER_METADATA
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
+

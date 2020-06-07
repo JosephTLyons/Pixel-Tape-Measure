@@ -7,12 +7,12 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.2.0
+  Created with Projucer version: 5.4.7
 
   ------------------------------------------------------------------------------
 
-  The Projucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright (c) 2015 - ROLI Ltd.
+  The Projucer is part of the JUCE library.
+  Copyright (c) 2017 - ROLI Ltd.
 
   ==============================================================================
 */
@@ -38,7 +38,7 @@ class Interface  : public Component
 public:
     //==============================================================================
     Interface ();
-    ~Interface();
+    ~Interface() override;
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
@@ -70,7 +70,7 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Label> pixelDistanceLabel;
+    std::unique_ptr<Label> pixelDistanceLabel;
 
 
     //==============================================================================
@@ -79,3 +79,4 @@ private:
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
+
